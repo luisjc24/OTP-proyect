@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Envío de OTP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+  <h1>Envío de Código OTP</h1>
+  <form id="otpForm">
+    <label for="phone">Número de Teléfono:</label>
+    <input type="text" id="phone" placeholder="+521234567890" required>
+    <button type="submit">Enviar OTP</button>
+  </form>
+
+  <form id="validateForm" style="display: none;">
+    <label for="otp">Código OTP:</label>
+    <input type="text" id="otp" placeholder="1234" required>
+    <button type="submit">Validar OTP</button>
+  </form>
+
+  <p id="message"></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
