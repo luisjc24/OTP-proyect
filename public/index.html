@@ -3,27 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Envío de OTP</title>
+  <title>Banca Virtual</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="container">
-  <h1>Envío de Código OTP</h1>
-  <form id="otpForm">
-    <label for="phone">Número de Teléfono:</label>
-    <input type="text" id="phone" placeholder="+521234567890" required>
-    <button type="submit">Enviar OTP</button>
-  </form>
+<!-- Contenedor de la ventana de Login -->
+<div class="container" id="login-container">
+  <h1>Bienvenido a tu banca virtual</h1>
 
-  <form id="validateForm" style="display: none;">
-    <label for="otp">Código OTP:</label>
-    <input type="text" id="otp" placeholder="1234" required>
-    <button type="submit">Validar OTP</button>
-  </form>
+  <!-- Factor 1: Usuario y contraseña -->
+  <div id="login-factor">
+    <div class="field">
+      <label for="username">Usuario:</label>
+      <input type="text" id="username" placeholder="Ingrese su usuario">
+      <label class="remember">
+        <input type="checkbox" id="rememberUser"> Recordar usuario
+      </label>
+    </div>
 
-  <p id="message"></p>
+    <div class="field">
+      <label for="passwordDisplay">Contraseña (6 dígitos):</label>
+      <!-- Se muestra enmascarada la contraseña mientras se ingresa -->
+      <input type="text" id="passwordDisplay" placeholder="••••••" readonly>
+    </div>
+
+    <!-- Teclado numérico con dígitos en orden aleatorio -->
+    <div id="keypad"></div>
+    <!-- Botones de acción para borrar el último dígito o limpiar toda la contraseña -->
+    <div id="keypad-actions">
+      <button id="backspace">←</button>
+      <button id="clear">CE</button>
+    </div>
+
+    <button id="validateLogin">Validar</button>
+    <span id="loginMessage"></span>
+  </div>
+
+  <!-- Factor 2: Validación de código OTP -->
+  <div id="otp-factor" style="display:none;">
+    <h2>Validar código OTP</h2>
+    <div class="field">
+      <label for="phone">Ingrese su número de celular (con el código del país sin espacios):</label>
+      <input type="text" id="phone" placeholder="+521234567890">
+      <button id="sendOTP">Enviar código</button>
+    </div>
+    <div class="field" id="otp-input-section" style="display:none;">
+      <label for="otp">Ingresar código:</label>
+      <input type="text" id="otp" placeholder="1234">
+      <button id="validateOTP">Validar</button>
+    </div>
+    <span id="otpMessage"></span>
+  </div>
+
+  <!-- Factor 3: Validación de huella digital -->
+  <div id="fingerprint-factor" style="display:none;">
+    <button id="validateFingerprint">Validar huella digital</button>
+    <span id="fingerprintMessage"></span>
+  </div>
+
+  <!-- Botón final para Ingresar -->
+  <button id="finalIngresar" disabled class="disabled">Ingresar</button>
+  <span id="finalMessage"></span>
+
 </div>
+
+
 
 <script src="script.js"></script>
 </body>
 </html>
+

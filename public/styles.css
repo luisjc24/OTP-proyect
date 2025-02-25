@@ -1,3 +1,4 @@
+/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -12,12 +13,19 @@ body {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
     text-align: center;
+    width: 320px;
 }
 
-h1 {
+h1, h2 {
     margin-bottom: 20px;
+}
+
+/* Estilos para cada campo */
+.field {
+    margin-bottom: 15px;
+    text-align: left;
 }
 
 label {
@@ -25,14 +33,59 @@ label {
     margin-bottom: 5px;
 }
 
-input {
+input[type="text"] {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
+.remember {
+    font-size: 0.9em;
+}
+
+/* Teclado numérico */
+#keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#keypad button {
+    padding: 15px;
+    font-size: 1.2em;
+    border: none;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Botones de acción para el teclado */
+#keypad-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#keypad-actions button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    font-size: 1em;
+    border: none;
+    background-color: #d9534f;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#keypad-actions button#clear {
+    background-color: #f0ad4e;
+}
+
+/* Botones generales */
 button {
     padding: 10px 20px;
     background-color: #28a745;
@@ -40,13 +93,29 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
-button:hover {
+button:hover:not(.disabled) {
     background-color: #218838;
 }
 
-#message {
-    margin-top: 20px;
-    color: #dc3545;
+/* Clase para el botón final en estado “no validado” */
+button.disabled {
+    background-color: #dc3545;
+}
+
+/* Mensajes */
+span {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
 }
