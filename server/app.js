@@ -20,7 +20,7 @@ app.post('/enviar-otp', (req, res) => {
     otpStorage[phone] = { otp, timestamp: Date.now() };
 
     twilioClient.messages.create({
-        body: `Tu código OTP es: ${otp}`,
+        body: `Luis, tú código OTP es: ${otp}`,
         from: process.env.TWILIO_PHONE_NUMBER,
         to: phone
     })

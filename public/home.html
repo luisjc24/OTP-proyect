@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Banca Virtual</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        <!-- Asegúrate de tener el archivo "logo.png" en la ruta correcta -->
+        <img src="logo.png" alt="Logo del banco">
+        <h2>Banco Virtual</h2>
+    </div>
+    <div class="nav-actions">
+        <span id="cronometro">05:00</span>
+        <button id="notificaciones" title="Notificaciones">
+            <i class="fa-solid fa-bell"></i>
+        </button>
+        <button id="verPerfil" title="Ver perfil">
+            <i class="fa-solid fa-user"></i>
+        </button>
+        <button id="cerrarSesion" title="Cerrar sesión">
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
+    </div>
+</nav>
+<!-- Panel de Notificaciones -->
+<div class="notifications-panel" id="notificationsPanel">
+    <div class="notification">
+        <p><strong>Recuerda:</strong> puedes cambiar tu dinero a dólares con el mejor tipo de cambio.</p>
+    </div>
+    <div class="notification">
+        <p><strong>Atención:</strong> sus transacciones están seguras con el nuevo sistema inteligente.</p>
+    </div>
+</div>
+<!-- Modal de Perfil -->
+<div class="modal" id="perfilModal">
+    <div class="modal-content">
+        <span class="close-modal" id="closePerfil">&times;</span>
+        <div class="profile-info">
+            <!-- Asegúrate de tener la imagen "user-photo.png" o cambia la ruta -->
+            <img src="user-photo.png" alt="Foto del usuario">
+            <p><strong>Nombres:</strong> Luis Fernando</p>
+            <p><strong>Apellidos:</strong> Dias Vega</p>
+            <p><strong>DNI:</strong> 123456789</p>
+            <p><strong>Edad:</strong> 28</p>
+            <p><strong>Dirección:</strong> Mz A Lote 5 Urb Los Cedros</p>
+            <p><strong>Distrito:</strong> San Miguel</p>
+            <p><strong>Provincia:</strong> Lima</p>
+            <p><strong>Región:</strong> Lima</p>
+        </div>
+    </div>
+</div>
+
+<!-- Contenido principal -->
+<div class="main-content">
+    <div class="welcome">
+        <h1>Bienvenido a tu banca, {name user}</h1>
+    </div>
+    <div class="saldo">
+        <strong>Saldo actual:</strong> $5,000.00
+    </div>
+    <div class="cards-container">
+        <div class="card" id="PagarServicios">
+            <h3>Pagar servicios</h3>
+        </div>
+        <div class="card" id="ConfigurarTarjetas">
+            <h3>Configurar tarjetas</h3>
+        </div>
+        <div class="card" id="VerMovimientos">
+            <h3>Ver movimientos</h3>
+        </div>
+        <div class="card" id="RealizarTransacciones">
+            <h3>Realizar transacciones</h3>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Configuración de Tarjetas -->
+<div id="modalConfigTarjetas" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="cerrarModalTarjetas">&times;</span>
+        <h2>Configurar Tarjeta</h2>
+
+        <!-- Imagen de la Tarjeta -->
+        <img src="tarjeta.png" alt="Tarjeta Bancaria" class="tarjeta-imagen">
+
+        <!-- Selección de Tarjeta -->
+        <label for="seleccionarTarjeta">Seleccionar tarjeta:</label>
+        <select id="seleccionarTarjeta">
+            <option value="" disabled selected>Seleccione una tarjeta</option>
+            <option value="debito">Tarjeta de Débito MasterCard</option>
+            <option value="credito-visa">Tarjeta de Crédito Visa</option>
+            <option value="credito-amex">Tarjeta de Crédito AMEX</option>
+        </select>
+
+        <!-- Información de la tarjeta -->
+        <div id="infoTarjeta" style="display: none;">
+            <p><strong>Estado de tarjeta:</strong></p>
+            <button id="estadoTarjeta" class="btn-activada">Activada</button>
+
+            <p><strong>Nombre del Titular:</strong> Luis Fernando Dias Vega</p>
+            <p><strong>Número de Tarjeta:</strong> <span id="numTarjeta">**** **** **** 1234</span></p>
+            <p><strong>Número de Cuenta:</strong> <span id="numCuenta">123456789012</span></p>
+            <p><strong>Fecha de Caducidad:</strong> <span id="fechaCaducidad">08/2026</span></p>
+        </div>
+
+        <!-- Botones -->
+        <button id="guardarCambios">Guardar</button>
+        <button id="cancelarCambios">Cancelar</button>
+    </div>
+</div>
+
+<!-- Modal de Ver Movimientos -->
+<div id="modalMovimientos" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="cerrarModalMovimientos">&times;</span>
+        <h2>Lista de Movimientos</h2>
+        <div id="listaMovimientos">
+            <!-- Los movimientos se generarán dinámicamente con JavaScript -->
+        </div>
+        <button id="cerrarMovimientos" class="btn-cerrar">Cerrar</button>
+    </div>
+</div>
+
+<!-- Modal de Pago de Servicios -->
+<div id="modalPagarServicios" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="cerrarModalServicios">&times;</span>
+        <h2>Pagar Servicios</h2>
+
+        <label for="selectServicio">Seleccionar servicio:</label>
+        <select id="selectServicio">
+            <option value="Luz">Luz</option>
+            <option value="Agua">Agua</option>
+            <option value="Telefonía">Telefonía</option>
+            <option value="Cable">Cable</option>
+            <option value="Universidades">Universidades</option>
+            <option value="Institutos">Institutos</option>
+            <option value="Streaming">Servicios de Streaming</option>
+        </select>
+
+        <label for="codigoCliente">Ingrese el código del cliente:</label>
+        <input type="text" id="codigoCliente" placeholder="Ej: 12345678">
+
+        <button id="btnConsultar">Consultar</button>
+
+        <!-- Resultado de la consulta -->
+        <div id="resultadoConsulta"></div>
+
+        <div id="seccionPago" style="display: none;">
+            <label for="selectTarjeta">Seleccionar tarjeta:</label>
+            <select id="selectTarjeta">
+                <option value="DebitoMasterCard">Tarjeta de Débito MasterCard</option>
+                <option value="CreditoVisa">Tarjeta de Crédito Visa</option>
+                <option value="CreditoAMEX">Tarjeta de Crédito AMEX</option>
+            </select>
+
+            <label>Use su huella digital:</label>
+            <button id="btnHuella">Huella digital</button>
+
+            <button id="btnConfirmarPago">Confirmar pago</button>
+        </div>
+
+        <button id="btnCerrar" class="btn-cerrar" style="display: none;">Cerrar</button>
+    </div>
+</div>
+<!-- Modal de Realizar Transacciones -->
+<!-- Modal de Realizar Transacciones -->
+<div id="modalRealizarTransacciones" class="modal-transacciones">
+    <div class="modal-content-transacciones">
+        <span class="close-modal-transacciones" id="cerrarModalTransacciones">&times;</span>
+        <h2>Realizar Transacciones</h2>
+
+        <!-- Seleccionar cuenta de origen -->
+        <label for="selectCuentaOrigen">Seleccionar cuenta de origen:</label>
+        <select id="selectCuentaOrigen">
+            <option value="xxx456">xxx456</option>
+            <option value="xxx789">xxx789</option>
+            <option value="xxx159">xxx159</option>
+        </select>
+
+        <!-- Ingresar cuenta destino interbancaria -->
+        <label for="cuentaDestino">Cuenta destino interbancaria:</label>
+        <input type="text" id="cuentaDestino" placeholder="Ingrese 16 dígitos" maxlength="16">
+
+        <!-- Seleccionar moneda -->
+        <label for="selectMoneda">Seleccionar moneda:</label>
+        <select id="selectMoneda">
+            <option value="Dólares">Dólares</option>
+            <option value="Soles">Soles</option>
+        </select>
+
+        <!-- Ingresar monto -->
+        <label for="monto">Monto:</label>
+        <input type="text" id="monto" placeholder="Ej: 1500.50" maxlength="7">
+
+        <!-- Validación con huella digital -->
+        <label>Use su huella digital:</label>
+        <button id="btnHuellaTransaccion">Huella digital</button>
+
+        <!-- Botón para confirmar transacción -->
+        <button id="btnConfirmarTransaccion">Confirmar transacción</button>
+
+        <!-- Mensaje de resultado -->
+        <div id="resultadoTransaccion"></div>
+
+        <!-- Botón para cerrar el modal -->
+        <button id="btnCerrarTransaccion" class="btn-cerrar-transaccion" style="display: none;">Cerrar</button>
+    </div>
+</div>
+<footer>
+    <p>&copy; 2025 Banco Virtual. Todos los derechos reservados.</p>
+</footer>
+<script src="scripts.js"></script>
+</body>
+</html>
